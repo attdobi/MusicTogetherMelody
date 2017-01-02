@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<title>Music Together Melody</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+*{
+  box-sizing:border-box;
+}
+html, body{
+  height:100%;
+  font: normal 1em/1.5 "Open Sans";
+  background-color:white;
+  background-size:cover;
+}
+a{
+  color:#ccc;
+}
+.container{
+  width:600px;
+  min-height:500px;
+  margin:0 auto;
+  position:relative;
+  padding-bottom:30px;
+  overflow:hidden;
+}
+
+input[type="radio"] {
+position: absolute;
+width: 1px; /* Setting this to 0 make it invisible for VoiceOver */
+height: 1px; /* Setting this to 0 make it invisible for VoiceOver */
+padding: 0;
+margin: -1px;
+border: 0;
+clip: rect(0 0 0 0 0 0 0);
+overflow: hidden;
+}
+label{
+  display:block;
+  width:16%;
+  border: 4px solid lightgrey;
+  position:absolute;
+  bottom:5px;
+  cursor: pointer;
+  transition: border-color 0.3s linear;
+}
+
+label.second{
+  left:16.5%;
+}
+label.third{
+  left:33%;
+}
+label.fourth{
+  left:49.5%;
+}
+label.fifth{
+  left:66%;
+}
+label.sixth{
+  left:82.5%;
+}
+
+blockquote{
+  margin:0;
+  padding:30px;
+  width:550px;
+  background-color: #DB532B;
+  color:white;
+  box-shadow: 0 5px 2px rgba(0,0,0,0.1);
+  position:relative;
+  transition: background-color 0.6s linear;
+}
+
+blockquote:after { 
+  content: " "; 
+  height: 0; 
+  width: 0; 
+  position: absolute; 
+  top: 100%; 
+  border: solid transparent; 
+  border-top-color: #DA532B;
+  border-left-color:#DA532B;
+  border-width: 10px; 
+  left: 10%; 
+} 
+#second:checked ~ .two blockquote {
+  background-color:purple;
+}
+.two blockquote:after{
+  border: solid transparent; 
+  border-top-color: purple;
+  border-left-color:purple;
+  border-width: 10px;
+}
+#third:checked ~ .three blockquote{
+  background-color:#54885F;
+}
+.three blockquote:after{
+  border: solid transparent; 
+  border-top-color: #54885F;
+  border-left-color: #54885F;
+  border-width: 10px;
+} 
+#fourth:checked ~ .four blockquote {
+  background-color:darkred;
+}
+.four blockquote:after{ 
+  border: solid transparent;
+  border-top-color:darkred;
+  border-left-color:darkred;
+  border-width: 10px;
+}
+#fifth:checked ~ .five blockquote {
+  background-color:darkblue;
+}
+.five blockquote:after{
+  border: solid transparent; 
+  border-top-color:darkblue;
+  border-left-color:darkblue;
+  border-width: 10px;
+}
+#sixth:checked ~ .six blockquote {
+  background-color:grey;
+}
+.six blockquote:after{
+  border: solid transparent; 
+  border-top-color: grey;
+  border-left-color:grey;
+  border-width: 10px;
+}
+.quotes{
+  position:absolute;
+  color:rgba(255,255,255,0.5);
+  font-size:5em;
+}
+.leftq{
+  top:-25px;
+  left:5px;
+}
+.rightq{
+  bottom:-10px;
+  right:5px;
+}
+
+.slide{
+  position:absolute;
+  left:-100%;
+  opacity:0;
+  transition: all 0.6s ease-in;
+}
+
+#first:checked ~ label.first {
+  border-width:6px;
+  border-color:#DB532B;
+}
+#second:checked ~ label.second {
+  border-width:6px; border-color:purple;
+}
+#third:checked ~ label.third {
+  border:6px solid #54885F;
+}
+#fourth:checked ~ label.fourth {
+  border-width:6px; border-color:darkred;
+}
+#fifth:checked ~ label.fifth {
+  border-width:6px; border-color:darkblue;
+}
+#sixth:checked ~ label.sixth {
+  border-width:6px; border-color:grey;
+}
+
+#first:checked ~ div.one {
+  left:0;
+  opacity:1;
+}
+#second:checked ~ div.two {
+  left:0;
+  opacity:1;
+}
+#third:checked ~ div.three {
+  left:0;
+  opacity:1;
+}
+#fourth:checked ~ div.four {
+  left:0;
+  opacity:1;
+}
+#fifth:checked ~ div.five {
+  left:0;
+  opacity:1;
+}
+#sixth:checked ~ div.six {
+  left:0;
+  opacity:1;
+}
+</style>
+
+<body>
+
+<!-- Navbar -->
+<div class="w3-top w3-center">
+<ul class="w3-navbar w3-black w3-card-2 w3-left-align">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="#" class="w3-hover-none w3-hover-text-grey w3-padding-large">HOME</a></li>
+  <li class="w3-hide-small"><a href="#about" class="w3-padding-large">ABOUT</a></li>
+  <li class="w3-hide-small"><a href="#pricing" class="w3-padding-large">PRICING</a></li>
+  <li class="w3-hide-small"><a href="#register" class="w3-padding-large">REGISTER</a></li>
+  <li class="w3-hide-small"><a href="#testimonials" class="w3-padding-large">TESTIMONIALS</a></li>
+  <li class="w3-hide-small"><a href="#instructor" class="w3-padding-large">INSTRUCTOR</a></li>
+  <li class="w3-hide-small"><a href="#contact" class="w3-padding-large">CONTACT</a></li>
+  <li class="w3-hide-small w3-right"><a href="javascript:void(0)" class="w3-padding-large w3-hover-red"><i class="fa fa-search"></i></a></li>
+</ul>
+<!--img src="/static/images/logo.jpg" align="center" style="width:10%"-->
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <ul class="w3-navbar w3-left-align w3-black">
+    <li><a class="w3-padding-large" href="#home">HOME</a></li>
+    <li><a class="w3-padding-large" href="#about">ABOUT</a></li>
+    <li><a class="w3-padding-large" href="#register">PRICING</a></li>
+    <li><a class="w3-padding-large" href="#register">REGISTER</a></li>
+    <li><a class="w3-padding-large" href="#testimonials">TESTIMONIALS</a></li>
+    <li><a class="w3-padding-large" href="#instructor">INSTRCUTOR</a></li>
+    <li><a class="w3-padding-large" href="#contact">CONTACT</a></li>
+  </ul>
+</div>
+
+<!-- Page content -->
+<div class="w3-content w3-light-blue" style="max-width:2000px;max-height:850px;margin-top:46px; height:850px; overflow:hidden;">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/MT-001.jpg" style="width: 100%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/MT-002.jpg" style="width: 100%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <p></p>   
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/0005.jpg" style="width: 50%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/0016.jpg" style="width: 50%; height: 50%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/0018.jpg" style="width: 50%; height: 50%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+  </div>
+      <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/0026.jpg" style="width: 50%; height: 50%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+   </div> 
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/0014.jpg" style="width: 50%; height: 50%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="/static/images/0029.jpg" style="width: 50%; height: 50%">
+    <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-8 w3-hide-small">
+      <img src="/static/images/logo.jpg" align="center" style="width:70%"> 
+    </div>
+  </div>
+</div>
+
+  <!-- About Section -->
+  <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:1200px" id="about">
+    <h2 class="w3-wide">ABOUT</h2>
+    <p class="w3-opacity w3-xlarge"><i>Welcome to Music Together Melody!</i></p>
+    <p> Music Together® is one of the leading early childhood education programs recognized around the world. Designed for babies to kindergartners and their parents, the classes help promote family enrichment through music.
+
+Music Together Melody has been serving the Montgomery county area for 10 years led by instructor Marianna Wise, who has been working with children for over 22 years. Classes are offered in D.C., North Bethesda and Germantown, MD.
+    </p>
+    <div class="w3-row w3-padding-8">
+      <p>Marianna H. Wise</p>
+      <img src="/static/images/0020.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:12%">
+    </div>
+    <p class="w3-justify">
+ Music Together® is an internationally recognized early childhood music program for babies, toddlers, preschoolers, kindergarteners, and the adults who love them. First offered to the public in 1987, it pioneered the concept of a research-based, developmentally appropriate early childhood music curriculum that strongly emphasizes and facilitates adult involvement.
+
+All classes are based on the recognition that all children are musical. All children can learn to sing in tune, keep a beat, and participate with confidence in the music of our culture, provided that their early environment supports such learning. By emphasizing actual music experiences rather than concepts about music, Music Together introduces children to the pleasures of making music instead of passively receiving it from CDs or TV.
+<br><br>
+
+Music Together classes are based on the idea that making music with children, in the family, and in a community of families enriches the lives of children and parents, promotes musical growth in children….And is fun! Our program creates an atmosphere which invites and encourages participation by both children and adults regardless of musical skill, talent or training. Music Together parents discover what a powerful role model they are for their child just by having fun with the music themselves. In doing so they often find  their own musicality flourishes as well.
+
+The Music Together program emphasizes actual music experiences rather then conceptsabout music. Designed to bring families together through music, the program encourages  family participation in spontaneous musical activity within the context of daily life. </p>
+     <div class="w3-row w3-padding-32">
+        <p>Must watch videos about Music Together</p>
+        <div class="w3-half w3-section">
+          <iframe title="YouTube video player" width="560" height="315" 
+          src="http://www.youtube.com/embed/UFAtlb7M9vY">
+          </iframe>
+        </div>
+        <div class="w3-half w3-section">
+          <iframe title="YouTube video player" width="560" height="315" 
+          src="http://www.youtube.com/embed/fe0Ccn3P7sY">
+          </iframe>
+        </div>  
+      </div> 
+  </div>
+
+<!-- Pricing Section -->
+<div class="w3-container w3-padding-16 w3-center w3-light-grey" id="pricing">
+  <h3>PRICING</h3>
+  <div class="w3-row-padding" style="margin-top:32px">
+    <div class="w3-half w3-section">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Tuition 8 Weeks</li>
+        <li class="w3-light-blue w3-large w3-padding-16">
+        BlackRock In Germantown & St. Marks In N.Bethesda </li>
+        <li class="w3-padding-16">1st child that has never attended a class $210</li>
+        <li class="w3-padding-16">1st child of a returning family $190 </li>
+        <li class="w3-padding-16">2nd child (new or returning family) $170</li>
+        <li class="w3-padding-16">3rd child over 8 months $75</li>
+        <li class="w3-padding-16">Children under 8 months attend free with paid siblings</li>
+        <li class="w3-light-grey w3-padding-16">
+          <a class="w3-btn w3-black w3-padding-large" href="#register">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+    <div class="w3-half w3-section">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Tuition 10 Weeks</li>
+        <li class="w3-light-blue w3-large w3-padding-16">
+        Cleveland Park Congregational UCC </li>
+        <li class="w3-padding-16">1st child that has never attended a class $250</li>
+        <li class="w3-padding-16">1st child of a returning family $230</li>
+        <li class="w3-padding-16">2nd child (new or returning family) $190</li>
+        <li class="w3-padding-16">3rd child over 8 months $95</li>
+        <li class="w3-padding-16">Children under 8 months attend free with paid siblings</li>
+        <li class="w3-light-grey w3-padding-16">
+          <a class="w3-btn w3-black w3-padding-large" href="#register">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <h5>All fees include song book and music cds,normally $41 charge</h5>
+</div>
+
+  <!-- Location and Registration Section -->
+  <div class="w3-black" id="register">
+    <div class="w3-container w3-content w3-padding-32" style="max-width:1000px">
+      <h2 class="w3-wide w3-center">Register For Classes</h2>
+      <p class="w3-opacity-white w3-center"><i>Locations</i></p>
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+        <li class="w3-padding">Winter 2017 <span class="w3-tag w3-green w3-margin-left">Open</span></li>
+      </ul>
+
+      <div class="w3-row-padding w3-padding-16" style="margin:0 -16px">
+        <div class="w3-third w3-margin-bottom">
+          <!-- Add Google Maps -->
+          <p class="w3-large w3-center">Washington D.C.</p>
+          <div id="googleMap1" style="height:400px;filter:grayscale(50%);-webkit-filter:grayscale(50%);"></div>
+          <div class="w3-container w3-white">
+            <p><b>Cleveland Park Congregational UCC</b><br>
+            3400 Lowell St. NW<br>
+            Washington DC 20016</p>
+            <p class="w3-green">Starting: Wednesday, January 11</p>
+            <p>10 Weeks of classes</p>
+            <button class="w3-btn w3-margin-bottom" id="DC" name="DC">Regestier</button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <!-- Add Google Maps -->
+          <p class="w3-large w3-center">Bethesda</p>
+            <div id="googleMap2" style="height:400px;filter:grayscale(50%);-webkit-filter:grayscale(50%);"></div>
+          <div class="w3-container w3-white">
+            <p><b>St. Mark Presbyterian Church</b><br>
+            10701 Old Georgetown Rd. <br>
+            N. Bethesda, MD 20852</p>
+            <p class="w3-green">Starting: Tuesday, January 10</p>
+            <p>8 Weeks of classes</p>
+            <button class="w3-btn w3-margin-bottom" id="Bethesda">Regestier</button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <!-- Add Google Maps -->
+          <p class="w3-large w3-center">Germantown</p>
+            <div id="googleMap3" style="height:400px;filter:grayscale(50%);-webkit-filter:grayscale(50%);"></div>
+          <div class="w3-container w3-white">
+            <p><b>BlackRock Center for the Arts</b><br>
+            12901 Town Commons Dr.<br>
+            Germantown, MD 20874</p>
+            <p class="w3-green">Starting: Monday, January 9</p>
+            <p>8 Weeks of classes</p>
+            <button class="w3-btn w3-margin-bottom" id="Germantown">Regestier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Modal google forms-->
+  <div id="ticketModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-8">
+      <header class="w3-container w3-teal w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('ticketModal').style.display='none'" 
+       class="w3-closebtn w3-padding-xlarge w3-xxlarge w3-display-topright">×</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Register For Classes</h2>
+      </header>
+      <div class="w3-container">
+      <script type="text/javascript">var submitted=true;</script>
+       <iframe id="iframe" name="iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdwOiylESmDhayDVJZbVz2Uz5U6QfCCMI68sYea6d8N8YDBug/viewform?embedded=true" onload="if(submitted) {submitClick()}" width="760" height="600" frameborder="1" marginheight="0" marginwidth="0">Loading...  
+       </iframe>
+        <h4 align="center"> submit form then click pay </h4>
+        <a id="pay" class="w3-btn-block w3-teal w3-padding-12 w3-section w3-right" href="https://squareup.com/store/musictogethermelody" style="visibility:hidden;">GO TO PAY <i class="fa fa-check"></i></a>
+        <button id="close" name="close" class="w3-btn w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
+        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Modal original-->
+  <div id="ticketModalOriginal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-8">
+      <header class="w3-container w3-teal w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('ticketModal').style.display='none'" 
+       class="w3-closebtn w3-padding-xlarge w3-xxlarge w3-display-topright">×</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
+      </header>
+      <div class="w3-container">
+        <p><label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="How many?">
+        <p><label><i class="fa fa-user"></i> Send To</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="Enter email">
+        <a class="w3-btn-block w3-teal w3-padding-12 w3-section w3-right" href="https://squareup.com/store/musictogethermelody/item/bethesda-mondays-am">PAY <i class="fa fa-check"></i></a>
+        <button class="w3-btn w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
+        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
+      </div>
+    </div>
+  </div>
+
+<!-- Testimonials -->
+<div class="container" id="testimonials">
+<h1 align='middle'> Testimonials</h1>
+  <input type="radio" name="nav" id="first" checked/>
+  <input type="radio" name="nav" id="second" />
+  <input type="radio" name="nav" id="third" />
+  <input type="radio" name="nav" id="fourth" />
+  <input type="radio" name="nav" id="fifth" />
+  <input type="radio" name="nav" id="sixth" />
+  
+<label for="first" class="first"></label>
+<label for="second"  class="second"></label>
+<label for="third" class="third"></label>
+<label for="fourth" class="fourth"></label>
+<label for="fifth" class="fifth"></label>
+<label for="sixth" class="sixth"></label>
+ 
+  <div class="one slide" name="testimonial">
+    <blockquote>
+      <span class="leftq quotes">&ldquo;</span> My granddaughter and I have been in one of Marianna Wise's Music Together groups for about a year and half and every class has been pure pleasure!  Marianna's love of children, cheerful demeanor, knowledge of music and ability to keep the class on track combine to make the class the highlight of our week. My granddaughter, now two, loves her "songs" and asks to hear them both at home and in the car. I often hear here singing them to herself when she goes down for her nap.<br>Music Together is a high-quality program for children and those who love them, and Marianna is a splendid teacher. Go have fun! <span class="rightq quotes">&bdquo; </span>
+    </blockquote>
+    
+    <h3>Linda McCormick</h3>
+    <h6>Washington, DC</h6>
+  </div>
+  
+  <div class="two slide" name="testimonial">
+    <blockquote>
+      <span class="leftq quotes">&ldquo;</span> Marianna engages even the youngest of students in the wonderful Music Together songs. She breaks down the sounds and beats and uses movement, instruments, and pictures to draw the children in to the world of music. My daughter was enthralled with the class experience and the CD from class that we played in the car over and over! What a special experience! <span class="rightq quotes">&bdquo; </span>
+    </blockquote>
+    
+    <h2>Julie Schuman</h2>
+    <h6>Bethesda, MD</h6>
+  </div>
+  
+  <div class="three slide" name="testimonial">
+    <blockquote>
+      <span class="quotes leftq"> &ldquo;</span> My daughter and I recently finished our first Music Together class with Marianna and we were sad to have the session come to a close. My little girl was the youngest of the class and Marianna kept her engaged from day one. She helped us find ways to enjoy the music and activities at her own pace. We enjoyed the music in class, at home, and in the car and witnessed tremendous growth. By our last class, our girl was standing and dancing in the middle of the kid's circle. We are excited for our next Music Together class! <span class="rightq quotes">&bdquo; </span>
+    </blockquote>
+    <h2>Wendy Weiss Eder</h2>
+    <h6>Bethesda, MD</h6>
+  </div>
+  <div class="four slide" name="testimonial">
+    <blockquote>
+      <span class="quotes leftq"> &ldquo;</span> I'm a professional Naanny for over 20 years and have been going to Miss Marianna Wise classes for over a year  with the little angel I am taking care now, my little one is about to turn 2 but she loves her music classes and songs. Miss Marianna is so wonderful and engaging with all the kids that  makes them want to participate in all the dancing and to create their own music. Every class is an adventure, always different and fun. She invite to participe all the adults in the dancing and singing too, making a great time for everyone. I will definitely talk to my boss to make sure we will be back for the next session.  <span class="rightq quotes">&bdquo; </span>
+    </blockquote>
+    <h2>Pilar Barrios</h2>
+    <h6>Silver Spring, MD</h6>
+  </div>
+  <div class="five slide" name="testimonial">
+    <blockquote>
+      <span class="quotes leftq"> &ldquo;</span> I have been bringing my daughter to Music Together with Marianna for the past year, since she was 8 months old. We always look forward to class - it is such a fun, lively, bright spot in our week. It has been such a wonderful joy to watch my daughter grow and interact with the music differently at each stage of her development. While I love watching her catch on to different elements of the music and find great joy in that, this has also been a great unwinding activity for me too! The CDs have also been priceless to have in the car - my daughter always asks for songs and sings along to many of them. Marianna is a wonderful teacher and really makes the class so worth the price. She helps to engage everyone no matter what age or stage and makes it so easy and fun to get into the music. Sign up - you will love it!! <span class="rightq quotes">&bdquo; </span>
+    </blockquote>
+    <h2>Maddie Schneider</h2>
+    <h6>Bethesda, MD</h6>
+  </div>
+ <div class="six slide" name="testimonial">
+    <blockquote>
+      <span class="quotes leftq"> &ldquo;</span> Being a part of Music Together has been an amazing experience for my family.  The time we spend together at class is uninterrupted & FUN!  When we're all home as a family we love to listen to the music together, dance & play instruments.  I love that the class doesn't end when we leave, it continues on at home.  <span class="rightq quotes">&bdquo; </span>
+    </blockquote>
+    <h2>Tisha Chrobak</h2>
+    <h6>Bethesda, MD</h6>
+  </div>
+  
+</div>
+
+
+  <!-- Meet the instructor -->
+  <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="instructor">
+    <h2 class="w3-wide">Meet The Instructor</h2>
+    <div class="w3-row w3-padding-8">
+      <p>Marianna H. Wise</p>
+      <img src="/static/images/Instructor.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:20%">
+    </div>
+    <p class="w3-justify">
+ My name is Marianna Wise and I have been teaching Music Together classes since 2005. I received my BA in early childhood education, double majored in child psychology and music. It has always been my dream to teach and educate children.
+
+Music has been a part of my life since childhood.  Growing up in Hungary I attended a special music school, where I learned trained on the piano for 10 years. I performed regularly in concerts and accompanied the chorus. I took that passion for music with me as I continued my education and moved into the professional field.
+
+Now I have 22 years of experience working with children from infancy to kindergarten, and I have enjoyed every moment of my career. I have worked as both a lead teacher and assistant director in Bethesda for many years and also at the World Bank Children’s Center in Washington D.C. 
+<br><br>
+I joined the Music Together® Staff in June 2005 after successfully completing the training with the Center for Music and Young Children in Princeton, NJ.  I teach in the both the preschool setting and parent-children classes as well.
+
+Music plays a big part in my life and I am exited to share and teach children and their families every day.
+
+</div>
+
+  <!-- The Contact Section -->
+  <div class="w3-container w3-padding-16 w3-center w3-light-grey" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-large w3-margin-bottom w3-center">
+        <i class="fa fa-map-marker" style="width:30px"></i>10701 Old Georgetown Rd. North Bethesda MD 20852<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: 301-260-1861<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: musictogethermelody@verizon.net<br>
+      </div>
+    </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Scripts-->
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script> 
+  //$("#close").bind("click", function() {
+  //    document.getElementById("pay").style.visibility = "visible";
+   // });
+  function submitClick(){
+   document.getElementById("pay").style.visibility = "visible";
+  };
+
+
+//Setup binding from register button to Square pay links
+  $("#DC").bind("click", function() {
+    document.getElementById("ticketModal").style.display = "block";
+    $("#pay").attr("href", "https://squareup.com/store/musictogethermelody/item/spring-session-classes");
+  });
+
+  $("#Bethesda").bind("click", function() {
+    document.getElementById("ticketModal").style.display = "block";
+    $("#pay").attr("href", "https://squareup.com/store/musictogethermelody/item/winter-session-weeks");
+  });
+
+  $("#Germantown").bind("click", function() {
+    document.getElementById("ticketModal").style.display = "block";
+    $("#pay").attr("href", "https://squareup.com/store/musictogethermelody/item/bethesda-mondays-am");
+  });
+
+  //document.getElementById("pay")
+  //function registerClick() {
+  //$("pay").attr("href", "http://www.google.com/")
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+var myCenter1 = new google.maps.LatLng(38.9323272, -77.0666879);
+var myCenter2 = new google.maps.LatLng(39.0315557, -77.1254093);
+var myCenter3 = new google.maps.LatLng(39.1816503, -77.267183);
+    
+function initialize() {
+    var mapProp1 = {
+    center: myCenter1,
+    zoom: 13,
+    scrollwheel: false,
+    draggable: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var mapProp2 = {
+    center: myCenter2,
+    zoom: 13,
+    scrollwheel: false,
+    draggable: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var mapProp3 = {
+    center: myCenter3,
+    zoom: 13,
+    scrollwheel: false,
+    draggable: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    
+var map1 = new google.maps.Map(document.getElementById("googleMap1"),mapProp1);
+var map2 = new google.maps.Map(document.getElementById("googleMap2"),mapProp2);
+var map3 = new google.maps.Map(document.getElementById("googleMap3"),mapProp3);
+    
+var marker1 = new google.maps.Marker({position: myCenter1, });
+var marker2 = new google.maps.Marker({position: myCenter2, });
+var marker3 = new google.maps.Marker({position: myCenter3, });
+    
+marker1.setMap(map1);
+marker2.setMap(map2);
+marker3.setMap(map3);
+
+}
+    
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-small">
+    <p> Music Together® art & logo design © 1992-2015 Music Together LLC. Music Together is a registered trademark.
+    <br> “Music Together Melody” is licensed by Music Together LLC. 
+    <br> For more locations: www.musictogether.com  (800) 728-2692.
+    </p>
+    <img src='/static/images/0004.jpg'>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 4000);    
+}
+
+var myIndexT = 0;
+carouselT();
+
+function carouselT() {
+    var i;
+    var x = document.getElementsByName("nav");
+    for (i = 0; i < x.length; i++) {
+       x[i].checked = "false";  
+    }
+    myIndexT++;
+    if (myIndexT > x.length) {myIndexT = 1}    
+    x[myIndexT-1].checked = "true";  
+    setTimeout(carouselT, 10000);    
+}
+
+
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
