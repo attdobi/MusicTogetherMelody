@@ -1,4 +1,4 @@
-#!/Users/paulwise/MusicTogetherWeb/MusicTogetherWeb/bin/python
+#!/home/ubuntu/musictogether/venv/bin/python
 
 import sys
 import getopt
