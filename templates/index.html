@@ -6,9 +6,11 @@
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-          rel="stylesheet">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
@@ -76,6 +78,7 @@ blockquote{
   margin:0;
   padding:30px;
   width:570px;
+  max-width:90%;
   background-color: #DB532B;
   color:white;
   box-shadow: 0 5px 2px rgba(0,0,0,0.1);
@@ -221,7 +224,7 @@ blockquote:after {
   <li><a href="#register" class="w3-padding-large">REGISTER</a></li>
   <li class="w3-hide-small"><a href="#testimonials" class="w3-padding-large">TESTIMONIALS</a></li>
   <li class="w3-hide-small"><a href="#instructor" class="w3-padding-large">INSTRUCTOR</a></li>
-  <li><a href="#contact" class="w3-padding-large">CONTACT</a></li>
+  <li class="w3-hide-small"><a href="#contact" class="w3-padding-large">CONTACT</a></li>
   <li class="w3-hide-small w3-right"><a href="javascript:void(0)" class="w3-padding-large w3-hover-red"><i class="fa fa-search"></i></a></li>
 </ul>
 <!--img src="/static/images/logo.jpg" align="center" style="width:10%"-->
@@ -316,12 +319,12 @@ All classes are based on the recognition that all children are musical. All chil
      <div class="w3-row w3-padding-32">
         <p>Must watch videos about Music Together</p>
         <div class="w3-half w3-section">
-          <iframe title="YouTube video player" width="560" height="315" 
+          <iframe title="YouTube video player" width="100%" height="315" 
           src="http://www.youtube.com/embed/UFAtlb7M9vY">
           </iframe>
         </div>
         <div class="w3-half w3-section">
-          <iframe title="YouTube video player" width="560" height="315" 
+          <iframe title="YouTube video player" width="100%" height="315" 
           src="http://www.youtube.com/embed/fe0Ccn3P7sY">
           </iframe>
         </div>  
@@ -432,7 +435,7 @@ All classes are based on the recognition that all children are musical. All chil
       </header>
       <div class="w3-container">
       <script type="text/javascript">var submitted=true;</script>
-       <iframe id="iframe" name="iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdwOiylESmDhayDVJZbVz2Uz5U6QfCCMI68sYea6d8N8YDBug/viewform?embedded=true" onload="if(submitted) {submitClick()}" width="760" height="600" frameborder="1" marginheight="0" marginwidth="0">Loading...  
+       <iframe id="iframe" name="iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdwOiylESmDhayDVJZbVz2Uz5U6QfCCMI68sYea6d8N8YDBug/viewform?embedded=true" onload="if(submitted) {submitClick()}" width="100%" height="600" frameborder="1" marginheight="0" marginwidth="0">Loading...  
        </iframe>
         <h4 align="center"> submit form then click pay </h4>
         <a id="pay" class="w3-btn-block w3-teal w3-padding-12 w3-section w3-right" href="https://squareup.com/store/musictogethermelody" style="visibility:hidden;">GO TO PAY <i class="fa fa-check"></i></a>
@@ -440,6 +443,7 @@ All classes are based on the recognition that all children are musical. All chil
         <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Ticket Modal original-->
@@ -460,7 +464,7 @@ All classes are based on the recognition that all children are musical. All chil
         <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
       </div>
     </div>
-  </div>
+   </div>
 
 <!-- Testimonials -->
 <div class="container w3-content w3-padding-32" style="max-width:100%" id="testimonials">
@@ -528,7 +532,6 @@ All classes are based on the recognition that all children are musical. All chil
   </div>
 
 </div>
-
 
   <!-- Meet the instructor -->
   <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="instructor">
